@@ -12,7 +12,7 @@ const CreateTask = () => {
         const formData = new FormData(elem.target)
 
         const createData = async () => {
-            const res = await axios.post('http://localhost:3000/create-tasks', formData, {withCredentials: true})
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/create-tasks`, formData, {withCredentials: true})
 
             // console.log(res)
             

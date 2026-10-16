@@ -24,7 +24,7 @@ const Login = () => {
     
             elem.preventDefault()
     
-            const res = await axios.post('http://localhost:3000/login', userData, {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, userData, {
                 withCredentials: true,
                 validateStatus: () => true
             })

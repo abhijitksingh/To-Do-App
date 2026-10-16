@@ -11,7 +11,7 @@ const ViewTask = () => {
     useEffect(() => {
 
         const fetchTasks = async () => {
-            const res = await axios.get("http://localhost:3000/tasks", {withCredentials: true})
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks`, {withCredentials: true})
 
             setTasks(res.data.tasks)
         }
@@ -21,7 +21,7 @@ const ViewTask = () => {
 
 
     const deleteTask = async (id) => {
-        await axios.delete(`http://localhost:3000/tasks/${id}`, {
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/tasks/${id}`, {
             withCredentials: true,
             validateStatus: () => true
         })
@@ -58,7 +58,7 @@ const ViewTask = () => {
 
 
     const deleteMultipleTask = async () => {
-            await axios.delete("http://localhost:3000/multiple-tasks", {
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/multiple-tasks`, {
                 data: selectedTask,
                 withCredentials: true,
                 validateStatus: () => true

@@ -25,7 +25,7 @@ const SignUp = () => {
 
         elem.preventDefault()
 
-        const res = await axios.post('http://localhost:3000/signup', userData, {
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/signup`, userData, {
             withCredentials: true,
             validateStatus: () => true
         })

@@ -11,7 +11,7 @@ const UpdateTask = () => {
 
     useEffect(() => {
         const fetchTask = async () => {
-            const res = await axios.get(`http://localhost:3000/tasks/${id}`, {
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks/${id}`, {
                 withCredentials: true,
                 validateStatus: () => true
             })
@@ -25,7 +25,10 @@ const UpdateTask = () => {
     const handleSubmit = async (elem) => {
         elem.preventDefault()
 
-        await axios.put(`http://localhost:3000/update-tasks/${id}`, {title, caption})
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/update-tasks/${id}`, {title, caption}, {
+            withCredentials: true,
+            validateStatus: () => true
+        })
 
         navigate('/')
     }
