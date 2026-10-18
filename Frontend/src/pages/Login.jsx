@@ -28,7 +28,7 @@ const Login = () => {
                 withCredentials: true,
                 validateStatus: () => true
             })
-            console.log(res)
+            // console.log(res)
             
             if (res.status === 200) {
                 // alert('Successfully Login')

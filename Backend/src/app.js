@@ -185,10 +185,20 @@ app.get("/tasks", isLoggedIn, async(req, res) => {
 
     const tasks = await todoModel.find({user: req.user.id});
 
-    return res.status(200).json({
-        message: "Tasks Fetched Successfully",
-        tasks: tasks
-    });
+    if (!tasks || tasks.length === 0) {
+
+        return res.status(400).json({
+            message: "No Tasks Found"
+        });
+
+    }
+    else {
+
+        return res.status(200).json({
+            message: "Tasks Fetched Successfully",
+            tasks: tasks
+        });
+    };
 
 });
 
@@ -217,10 +227,20 @@ app.get("/tasks/:id", isLoggedIn, async(req, res) => {
 
     const task = await todoModel.findOne({_id: taskId, user: req.user.id});
 
-    return res.status(200).json({
-        message: "Task Fetched Successfully",
-        task: task
-    });
+    if (!task || task.length === 0) {
+
+        return res.status(400).json({
+            message: "No Tasks Found"
+        });
+
+    }
+    else {
+
+        return res.status(200).json({
+            message: "Tasks Fetched Successfully",
+            task: task
+        });
+    };
 
 });
 

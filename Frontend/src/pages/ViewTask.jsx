@@ -11,9 +11,17 @@ const ViewTask = () => {
     useEffect(() => {
 
         const fetchTasks = async () => {
-            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks`, {withCredentials: true})
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks`, {
+                withCredentials: true,
+                validateStatus: () => true
+            })
 
-            setTasks(res.data.tasks)
+            if (res.status === 200) {
+                setTasks(res.data.tasks)
+            }
+            else if (res.status === 400) {
+                setTasks([])
+            }
         }
         fetchTasks()
     }, [])
